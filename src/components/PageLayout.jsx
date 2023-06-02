@@ -21,7 +21,7 @@ export const PageLayout = (props) => {
     <>
       <Navbar bg="primary" variant="dark" className="navbarStyle">
         <a className="navbar-brand" href="/">
-          Microsoft Identity Platform
+         ⚗️Mocksite！
         </a>
         <div className="collapse navbar-collapse justify-content-end">
           {isAuthenticated ? <SignOutButton /> : <SignInButton />}
@@ -31,8 +31,7 @@ export const PageLayout = (props) => {
       <br />
       <h5>
         <center>
-          Welcome to the Microsoft Authentication Library For Javascript -
-          React SPA Tutorial
+        Open AI Chat Demoをお手本にしてハッカソンで作ったアプリ
         </center>
       </h5>
       <br />

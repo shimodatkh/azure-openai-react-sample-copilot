@@ -68,21 +68,28 @@ const ProfileContent = () => {
 
     return (
         <>
-            <h5 className="card-title">Welcome {accounts[0].name}</h5>
+            <h1 className="card-title">Open AI Chat Demo</h1>
             <br />
             {graphData ? (
                 <ProfileData graphData={graphData} />
             ) : (
                 <>
                     <div>
-                        <input type="text" value={inputText} onChange={handleInputChange} />
-                        <Button variant="secondary" onClick={handleButtonClick}>
-                            Submit
-                        </Button>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <p style={{textAlign: 'left'}}>聞きたい内容を入れてください</p>
+                            <input type="text" value={inputText} onChange={handleInputChange} placeholder="例. おすすめの春野菜レシピを教えて" style={{ marginBottom: '10px', width: '400px' }} />
+                            <Button variant="primary" onClick={handleButtonClick} style={{ width: '400px', backgroundColor: '#ADD8E6', boxShadow: '2px 2px 2px #888888' }}>
+                                投稿する
+                            </Button>
+                        </div>
                     </div>
                     <br />
                     <div>
-                        <textarea value={outputText} readOnly />
+                        
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    Open AIからの返答
+                        <textarea value={outputText} readOnly  placeholder="返答が表示されます" style={{ marginBottom: '100px', width: '400px', height:'100px' }} />
+                        </div>
                     </div>
                 </>
             )}
