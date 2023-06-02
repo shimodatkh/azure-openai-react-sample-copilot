@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 import { PageLayout } from './components/PageLayout';
 import { loginRequest } from './authConfig';
@@ -29,8 +30,36 @@ const ProfileContent = () => {
             });
     }
 
-    function handleInputChange(event) {
-        setInputText(event.target.value);
+    async function handleInputChange(event) {
+        const value = event.target.value;
+        setInputText(value);
+
+        try {
+            const response = await axios.post(
+                process.env.REACT_APP_OPENAI_API_URL,
+                {
+                    messages: [
+                      {
+                        role: "system",
+                        content: "You are a helpful assistant."
+                      },
+                      {
+                        role: "user",
+                        content: value
+                      }
+                    ],
+                },
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                    "api-key": process.env.REACT_APP_OPENAI_API_KEY,
+                  },
+                }
+            );
+            setOutputText(response.data.choices[0].message.content);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     function handleButtonClick() {
