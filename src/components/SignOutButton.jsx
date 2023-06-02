@@ -7,7 +7,7 @@ import Dropdown from "react-bootstrap/Dropdown";
  * Renders a sign out button 
  */
 export const SignOutButton = () => {
-  const { instance } = useMsal();
+  const { instance, accounts } = useMsal();
 
   const handleLogout = (logoutType) => {
     if (logoutType === "popup") {
@@ -22,12 +22,15 @@ export const SignOutButton = () => {
     }
   };
 
+  // ログインしているユーザーの名前を取得
+  const username = accounts[0]?.username;
+
   return (
     <DropdownButton
       variant="secondary"
       className="ml-auto"
       drop="start"
-      title="Sign Out"
+      title={username ? `${username} - Sign Out` : "Sign Out"}
     >
       <Dropdown.Item as="button" onClick={() => handleLogout("popup")}>
         Sign out using Popup
